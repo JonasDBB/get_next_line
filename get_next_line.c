@@ -6,7 +6,7 @@
 /*   By: jbennink <jbennink@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/11/25 14:06:22 by jbennink       #+#    #+#                */
-/*   Updated: 2019/11/28 17:03:31 by jbennink      ########   odam.nl         */
+/*   Updated: 2019/12/03 11:00:22 by jbennink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static void	buffer_set(char *orig, char *buffer)
 	*orig = '\0';
 }
 
+static void	*ft_free(char **line)
+{
+	free(*line);
+	return (NULL);
+}
+
 static char	*join_line(char *line, char *buffer)
 {
 	char	*ret;
@@ -34,7 +40,7 @@ static char	*join_line(char *line, char *buffer)
 	orig = buffer;
 	ret = (char *)malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
 	if (ret == NULL)
-		return (NULL);
+		return (ft_free(&line));
 	i = 0;
 	if (line != NULL)
 		while (line[i] != '\0')
